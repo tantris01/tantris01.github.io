@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+        #map {
+            height: calc(50vh);
+        }
+        nav ul{height:450px; width:100%;}
+        nav ul{overflow:hidden; overflow-y:scroll;}
+    </style>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.amber-deep_orange.min.css"/>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.css' rel='stylesheet'>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.1.1/mapbox-gl.js'></script>
+</head>
+
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer
+            mdl-layout--fixed-header">
+        <header class="mdl-layout__header">
+            <div class="mdl-layout__header-row">
+                <!-- Title -->
+                <span class="mdl-layout-title">Home</span>
+                <!-- Add spacer, to align navigation to the right -->
+                <div class="mdl-layout-spacer"></div>
+            </div>
+        </header>
+        <div class="mdl-layout__drawer">
+            <img src="./img/pristineCabsLogo.png">
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="home.html">Home</a>
+                <a class="mdl-navigation__link" href="scheduledBookingsList.html">Scheduled Bookings</a>
+                <a class="mdl-navigation__link" href="pastBookingsList.html">Past Bookings</a>
+            </nav>
+        </div>
+        <main class="mdl-layout__content">
+            <div class="page-content">
+                <!-- Your content goes here -->
+                <div class="mdl-grid">
+                    <div class="mdl-cell mdl-cell--2-col mdl-cell--2-col-tablet mdl-cell--2-col-phone">
+                        <h5>Enter booking date:</h5>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="date" id="bookingDate">
+                            <scan id="date_error_msg" style="color: red;"></scan>
+                        </div>
+                        <br>
+                        <h5>Enter booking time:</h5>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <input class="mdl-textfield__input" type="time" id="bookingTime">
+                            <scan id="time_error_msg" style="color: red;"></scan>
+                        </div>
+                        <br>
+                        <h5>Enter taxi type:</h5>
+                        <br>
+                        <div class="mdl-textfield mdl-js-textfield">
+                            <select class="mdl-textfield__input" id="taxiInput" name="taxiInput">
+                                <option value=""></option>
+                                <option value="Car">Sedan</option>
+                                <option value="SUV">SUV (+$3.50)</option>
+                                <option value="Van">Van (+$6.00)</option>
+                                <option value="Minibus">Minibus (+$10.00)</option>
+                            </select>
+                            <label class="mdl-textfield__label" for="TaxiInput">Taxis</label>
+                            <scan id="taxi_error_msg" style="color: red;"></scan>
+                        </div>
+                        <br><br><br><br><br>
+                        <div>
+                            <input type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                value="Next" onclick="nextPage()">
+                        </div>
+                        <div> 
+                            <label for="fname">First name:</label>
+                            <input type="text" id="fname" name="fname">
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--6-col mdl-cell--6-col-tablet mdl-cell--6-col-phone">
+                        <!--Use the h4 tag to communicate with the user-->
+                        <h4>Click your starting position</h4>
+                        <br>
+                        <div id="map">
+                            
+                        </div>
+                        <br>
+                        <div>
+                            <input type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                value="Use my location as start" onclick="userStartLocation()">
+                            <input type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                value="Toggle route" onclick="togglePath()">
+                            <input type="button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent"
+                                value="Toggle descriptions" onclick="togglePopups()">
+
+                        </div>
+                    </div>
+                    <div class="mdl-cell mdl-cell--4-col mdl-cell--4-col-tablet mdl-cell--4-col-phone">
+                        <h4>Stops:</h4>
+                        <nav>
+                            <ul class="mdl-list" id="stopData">
+    
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="./js/main.js"></script>
+    <script src="./js/taxiData.js"></script>
+    <script src="./js/booking.js"></script>
+    <script src="./js/shared.js"></script>
+
+</body>
+
+
+</html>
